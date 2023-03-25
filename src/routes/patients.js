@@ -47,11 +47,14 @@ class PatientsPage extends React.Component {
 }
 
 function recursiveFind(obj, value, exact) {
-  let json = JSON.stringify(obj);
-  const regex = exact
-    ? new RegExp('"' + value.toLowerCase() + '"', "g")
-    : new RegExp(".*" + value.toLowerCase() + ".*", "g");
-  return json.toLowerCase().search(regex) !== -1;
+  if (obj) {
+    let json = JSON.stringify(obj);
+    const regex = exact
+      ? new RegExp('"' + value.toLowerCase() + '"', "g")
+      : new RegExp(".*" + value.toLowerCase() + ".*", "g");
+    return json.toLowerCase().search(regex) !== -1;
+  }
+  return false;
 }
 
 function doFilter(patients, filter) {
